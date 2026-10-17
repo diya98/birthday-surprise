@@ -201,17 +201,65 @@ function S3(){
   $('bw').appendChild(b)})}
 
 /* 4: memory lane */
-function S4(){
- var el=$('c4'),i=0;
- el.innerHTML='<h3 class="hd">A walk down memory lane</h3><p class="sub">a moment worth keeping 📸</p><div class="sw"><div class="dots"></div><div class="pol" id="pol" role="button" tabindex="0" aria-label="Next photo"><div class="ph" id="ph"></div><div style="margin-top:6px">♥</div></div></div><button class="go" id="kg">Keep going 💛</button>';
- function show(){
-  var p = $('ph');
-  p.style.backgroundImage = "url('our-photo.jpg.png')";
-  p.style.backgroundSize = "cover";
-  p.style.backgroundPosition = "center";
-  p.innerHTML = "";
+
+function S4() {
+  var el = $('c4'), i = 0;
+
+  el.innerHTML =
+    '<h3 class="hd">A walk down memory lane</h3>' +
+    '<p class="sub">a moment worth keeping 📸</p>' +
+    '<div class="sw">' +
+      '<div class="dots"></div>' +
+      '<div class="pol" id="pol" role="button" tabindex="0" aria-label="Next photo">' +
+        '<div class="ph" id="ph"></div>' +
+        '<div style="margin-top:6px">♥</div>' +
+      '</div>' +
+    '</div>' +
+    '<button class="go" id="kg">Keep going 💛</button>';
+
+  function show() {
+    var p = $('ph');
+    var img = new Image();
+
+    p.style.backgroundImage = 'none';
+    p.innerHTML = 'Loading photo 💗';
+
+    img.onload = function() {
+      p.style.backgroundImage = "url('./our-photo.jpg.png')";
+      p.style.backgroundSize = 'cover';
+      p.style.backgroundPosition = 'center';
+      p.style.backgroundRepeat = 'no-repeat';
+      p.innerHTML = '';
+    };
+
+    img.onerror = function() {
+      p.style.backgroundImage = 'none';
+      p.innerHTML = 'Photo could not load 💗';
+    };
+
+    img.src = './our-photo.jpg.png';
+  }
+
+  show();
+
+  $('pol').onclick = function() {
+    if (P.length > 1) {
+      i = (i + 1) % P.length;
+      show();
+    }
+  };
+
+  $('pol').onkeydown = function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      $('pol').click();
+    }
+  };
+
+  $('kg').onclick = function() {
+    go(5);
+  };
 }
- show();$('pol').onclick=function(){if(P.length>1){i=(i+1)%P.length;show()}};$('kg').onclick=function(){go(5)}}
 
 /* 5: envelope and letter */
 function S5(){
