@@ -204,7 +204,13 @@ function S3(){
 function S4(){
  var el=$('c4'),i=0;
  el.innerHTML='<h3 class="hd">A walk down memory lane</h3><p class="sub">a moment worth keeping 📸</p><div class="sw"><div class="dots"></div><div class="pol" id="pol" role="button" tabindex="0" aria-label="Next photo"><div class="ph" id="ph"></div><div style="margin-top:6px">♥</div></div></div><button class="go" id="kg">Keep going 💛</button>';
- function show(){var p=$('ph');if(P.length){p.style.backgroundImage='url('+P[i]+')';p.innerHTML=''}else{p.innerHTML='<span style="font-size:2rem">📷</span><span>add your photos in the editor</span>'}}
+ function show(){
+  var p = $('ph');
+  p.style.backgroundImage = "url('our-photo.jpg')";
+  p.style.backgroundSize = "cover";
+  p.style.backgroundPosition = "center";
+  p.innerHTML = "";
+}
  show();$('pol').onclick=function(){if(P.length>1){i=(i+1)%P.length;show()}};$('kg').onclick=function(){go(5)}}
 
 /* 5: envelope and letter */
